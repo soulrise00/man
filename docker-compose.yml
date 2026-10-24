@@ -1,0 +1,30 @@
+services:
+  nukki:
+    build:
+      context: .
+      args:
+        # Model baked into the image. CPU default; set to birefnet-general if
+        # you run this on a GPU host (and add a GPU runtime).
+        REMBG_MODEL: ${REMBG_MODEL:-isnet-general-use}
+    image: nukki-service:latest
+    ports:
+      - "8000:8000"
+    environment:
+      REMBG_MODEL: ${REMBG_MODEL:-isnet-general-use}
+      PUBLIC_BASE_URL: ${PUBLIC_BASE_URL:-http://localhost:8000}
+      MAX_CONCURRENCY: ${MAX_CONCURRENCY:-2}
+      OMP_NUM_THREADS: ${OMP_NUM_THREADS:-4}
+      # Storage: "local" (default, uses the volume) or "s3".
+      STORAGE_BACKEND: ${STORAGE_BACKEND:-local}
+      S3_BUCKET: ${S3_BUCKET:-}
+      S3_REGION: ${S3_REGION:-}
+      S3_ENDPOINT_URL: ${S3_ENDPOINT_URL:-}
+      S3_PUBLIC_BASE_URL: ${S3_PUBLIC_BASE_URL:-}
+      # Postgres: postgresql+psycopg://user:pass@db/nukki  (empty => sqlite)
+      DATABASE_URL: ${DATABASE_URL:-}
+    volumes:
+      - nukki-data:/data
+    restart: unless-stopped
+
+volumes:
+  nukki-data:

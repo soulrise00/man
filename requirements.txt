@@ -1,0 +1,26 @@
+# Pinned to the versions verified working on Python 3.13 (CPU). See BENCHMARK.md.
+
+# --- Core service ---
+fastapi==0.128.8
+uvicorn[standard]==0.40.0
+python-multipart==0.0.21
+pydantic==2.14.1
+pydantic-settings==2.16.1
+SQLAlchemy==2.0.36
+
+# --- Background removal engine ---
+# rembg code is MIT. The ONNX model *weights* carry their own upstream licenses:
+#   isnet-general-use, birefnet-general : MIT  -> commercial use OK (defaults here)
+#   bria-rmbg / u2net-human-seg          : NON-commercial -> do NOT use on a paid platform
+# See the "License" section of README.md before switching REMBG_MODEL.
+rembg==2.0.86
+onnxruntime==1.31.0
+pillow==12.3.0
+numpy==2.5.4
+
+# --- Optional S3 storage backend (STORAGE_BACKEND=s3) ---
+boto3==1.43.118
+
+# --- Tests ---
+pytest==9.1.1
+httpx==0.28.1
