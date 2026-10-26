@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# App runtime data (DB, uploaded originals, generated cutouts)
+data/
+*.db
+*.sqlite3
+
+# Downloaded ONNX model cache (baked into Docker image at build time instead)
+.rembg/
+*.onnx
+
+# Env
+.env
+
+# Sample eval artifacts (keep the comparison image, drop the heavy per-model outputs)
+samples/input/
+samples/out_*/

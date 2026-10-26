@@ -1,0 +1,14 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.git/
+.gitignore
+data/
+samples/input/
+samples/out_*/
+*.onnx
+*.db
+.env
+tests/
